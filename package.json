@@ -1,0 +1,30 @@
+{
+  "name": "geojson-network-parser",
+  "version": "0.1.0",
+  "description": "A utility that turns a GeoJSON FeatureCollection of a road network and turns it into a routable graph",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "watchify index.js -t babelify -o dist/geojson-network-parser.js --verbose",
+    "build": "browserify index.js -t babelify --verbose > dist/geojson-network-parser.js"
+  },
+  "dependencies": {
+    "@turf/turf": "*",
+    "node-dijkstra": "^2.3.0",
+    "rbush": "*",
+    "rbush-knn": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kronick/geojson-network-parser.git"
+  },
+  "author": "Sam Kronick <sam@samkronick.com> (http://samkronick.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kronick/geojson-network-parser/issues"
+  },
+  "homepage": "https://github.com/kronick/geojson-network-parser#readme",
+  "devDependencies": {
+    "babelify": "^7.3.0"
+  }
+}
