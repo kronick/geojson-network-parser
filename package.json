@@ -1,6 +1,6 @@
 {
   "name": "geojson-network-parser",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "A utility that turns a GeoJSON FeatureCollection of a road network and turns it into a routable graph",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@turf/turf": "*",
-    "node-dijkstra": "^2.3.0",
+    "node-dijkstra": "^2.4.1",
     "rbush": "*",
     "rbush-knn": "*"
   },
