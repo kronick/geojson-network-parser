@@ -7,7 +7,7 @@
 ## Usage
 
 ```
-const NetworkParser = require('./NetworkParser');
+const NetworkParser = require('geojson-network-parser');
 
 
 var geojson = {

@@ -371,37 +371,32 @@ GeoJSONNetworkParser.prototype = {
                         seg1 = extendSegment(seg1);
                         seg2 = extendSegment(seg2);
                         const intersections = turf.lineIntersect(seg1, seg2);
-                        if(intersections !== undefined && intersections.length > 0 && intersections[0].geometry.type === "Point") {
-                            const intersection = intersections[0];
+                        if(intersections !== undefined && intersections.features.length > 0 && intersections.features[0].geometry.type === "Point") {
+                            const intersection = intersections.features[0];
                             if(nearEnough(s1.a, intersection.geometry.coordinates, tolerance)) {
                                 // T-intersection: Split s2, assign new two new edges and s1 to node at s1.a
-                                console.log("Splitting segment", s2, intersection.geometry.coordinates);
                                 const newSegments = splitSegment(s2, s1.a);
                                 aMatched = true;
                             }
                             else if(nearEnough(s1.b, intersection.geometry.coordinates, tolerance)) {
                                 // T-intersection: Split s2, assign new two new edges and s1 to node at s1.b
-                                console.log("Splitting segment", s2, intersection.geometry.coordinates);
                                 const newSegments = splitSegment(s2, s1.b);
                                 bMatched = true;
                             }
                             else if(nearEnough(s2.a, intersection.geometry.coordinates, tolerance)) {
                                 // T-intersection: Split s1, assign new two new edges and s2 to node at s2.a
-                                console.log("Splitting segment", s1, intersection.geometry.coordinates);
                                 const newSegments = splitSegment(s1, s2.a);
                                 // var n = assignEdgesToNode(s2.a, newSegments[0], newSegments[1]);
                                 // upsertNode(n);
                             }
                             else if(nearEnough(s2.b, intersection.geometry.coordinates, tolerance)) {
                                 // T-intersection: Split s1, assign new two new edges and s2 to node at s2.b
-                                console.log("Splitting segment", s1, intersection.geometry.coordinates);
                                 const newSegments = splitSegment(s1, s2.b);
                                 // var n = assignEdgesToNode(s2.b, newSegments[0], newSegments[1]);
                                 // upsertNode(n);
                             }
                             else {
                                 // X-intersection: Split s1 and s2, assign four new edges to new node at intersection point
-                                console.log("Splitting segments", s1, s2, intersection.geometry.coordinates);
                                 const newSegments1 = splitSegment(s1, intersection.geometry.coordinates);
                                 const newSegments2 = splitSegment(s2, intersection.geometry.coordinates);
                                 
