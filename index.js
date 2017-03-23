@@ -370,8 +370,9 @@ GeoJSONNetworkParser.prototype = {
                         var seg2 = {type: "Feature", geometry: {type: "LineString", coordinates: [s2.a, s2.b]}};
                         seg1 = extendSegment(seg1);
                         seg2 = extendSegment(seg2);
-                        const intersection = turf.intersect(seg1, seg2);
-                        if(intersection !== undefined && intersection.geometry.type === "Point") {
+                        const intersections = turf.lineIntersect(seg1, seg2);
+                        if(intersections !== undefined && intersections.length > 0 && intersections[0].geometry.type === "Point") {
+                            const intersection = intersections[0];
                             if(nearEnough(s1.a, intersection.geometry.coordinates, tolerance)) {
                                 // T-intersection: Split s2, assign new two new edges and s1 to node at s1.a
                                 console.log("Splitting segment", s2, intersection.geometry.coordinates);
